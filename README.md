@@ -2,6 +2,24 @@
 
 
 
+### CUSUM-Based Stateful Detection
+
+Our operation transition times are passed as input to a cumulative sum (CUSUM) procedure, which we use as a stateful detector. A unique instance of the procedure is used for each combination of actuator and type of operation (ON/OFF). This use of CUSUM enables the detection of changes in the statistical properties of measured transition times. Each transition time is fed to the corresponding detector as a single scalar value as soon as it is measured.
+
+We first define the symbols used in explaining the procedure:
+
+- `a`: Actuator under tracking  
+- `p ∈ {ON, OFF}`: Type of actuator operation  
+- `i ∈ ℕ₀`: Time step (with 1st iteration at `i = 1`)  
+- `k ∈ {+, -}`: Direction of tracked changes  
+- `Sₐ,ₚ,ᵢᵏ ∈ ℝ`: CUSUM  
+- `Tₐ,ₚᵏ ∈ ℝ`: CUSUM threshold  
+- `μₐ,ₚ ∈ ℝ⁺`: Mean transition time  
+- `βₐ,ₚ ∈ ℝ⁺`: Bias  
+- `tₐ,ₚ,ᵢ ∈ ℝ⁺`: Measured transition time  
+
+
+
 ### CUSUM Detector Iteration Rule
 
 Our CUSUM detector [1] iterates using the following rule:
