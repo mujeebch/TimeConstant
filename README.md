@@ -38,6 +38,7 @@ This work demonstrates that **physical-layer fingerprints** can be used to valid
 The **Time Constant** and **Control Signal Watermarking** techniques offer a novel and practical solution for securing actuators in ICS. By leveraging the inherent physical properties of devices and processes, these methods provide strong guarantees of authenticity and freshness, even under sophisticated attack scenarios. The approach is validated on a real-world testbed and shows promise for broader deployment in critical infrastructure.
 
 
+# System Model Data and Detector Parameters 
 
 ### CUSUM-Based Stateful Detection
 
