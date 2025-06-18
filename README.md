@@ -1,4 +1,41 @@
-# TimeConstant
+# Time Constant: Actuator Fingerprinting using Transient Response of Device and Process in ICS
+
+## Introduction
+
+Industrial Control Systems (ICS) are foundational to critical infrastructure such as water treatment plants, smart grids, and manufacturing. While connectivity enhances operational efficiency, it also introduces vulnerabilities—particularly to command injection and replay attacks. Traditional network-based defenses often fail to detect these threats at the physical layer. This paper introduces a novel actuator fingerprinting method called **Time Constant**, which leverages the unique transient behavior of actuators and processes to detect and prevent such attacks.
+
+## Methodology
+
+### Time Constant
+
+The **Time Constant** technique captures the time it takes for an actuator to complete an operation (e.g., opening a valve) and the corresponding process response (e.g., change in flow rate). This transient behavior is unique to each actuator due to manufacturing differences and process dynamics, making it a reliable fingerprint. The fingerprint is extracted passively from sensor data, without relying on control command timestamps.
+
+### Control Signal Watermarking
+
+To counter advanced attackers capable of mimicking Time Constant patterns, the authors introduce **Control Signal Watermarking**. This active defense injects a random delay (watermark) into control commands. The watermark is reflected in the sensor data and can be used to verify the authenticity of actuator behavior. Since the watermark is generated and verified within the PLC, it remains hidden from external attackers.
+
+## Experimental Setup
+
+The techniques were evaluated on the **SWaT (Secure Water Treatment)** testbed—a real-world ICS environment. The study involved:
+- Multiple actuators (valves and pumps)
+- Associated sensors (flow and level)
+- A machine learning classifier (SVM) trained on Time Constant features
+- Real-time attack simulations including spoofing and replay
+
+## Key Results
+
+- **Actuator Fingerprinting**: Time Constant successfully distinguished between identical actuators with over 95% accuracy using linear and polynomial SVM kernels.
+- **State Identification**: The method could differentiate between ON/OFF states of actuators based on timing profiles.
+- **Attack Detection**: A CUSUM-based anomaly detector using Time Constant achieved high detection rates (≥80%) for several attack types.
+- **Replay Resistance**: The watermarking technique effectively exposed replay attacks, especially with delays ≥35 seconds, validated using statistical tests like the Kolmogorov-Smirnov test.
+
+## Implications for ICS Security
+
+This work demonstrates that **physical-layer fingerprints** can be used to validate actuator behavior independently of SCADA data, offering a robust defense against insider and replay attacks. The approach is lightweight, compatible with legacy systems, and does not require cryptographic overhead. It also provides a foundation for **process-aware authentication** in ICS environments.
+
+## Conclusion
+
+The **Time Constant** and **Control Signal Watermarking** techniques offer a novel and practical solution for securing actuators in ICS. By leveraging the inherent physical properties of devices and processes, these methods provide strong guarantees of authenticity and freshness, even under sophisticated attack scenarios. The approach is validated on a real-world testbed and shows promise for broader deployment in critical infrastructure.
 
 
 
